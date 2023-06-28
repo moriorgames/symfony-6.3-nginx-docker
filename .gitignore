@@ -2,16 +2,15 @@
 /.env.local
 /.env.local.php
 /.env.*.local
-/.phpunit.result.cache
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
 /var/
+/vendor/
 
 # PHPUnit
 /phpunit.xml
 /coverage/
 
 # PHPStorm
-/.idea/
-/.phpstorm.meta.php/
-*.iml
 .idea/
 .DS_Store
