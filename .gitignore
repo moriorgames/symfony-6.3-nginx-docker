@@ -1,0 +1,17 @@
+# Symfony
+/.env.local
+/.env.local.php
+/.env.*.local
+/.phpunit.result.cache
+/var/
+
+# PHPUnit
+/phpunit.xml
+/coverage/
+
+# PHPStorm
+/.idea/
+/.phpstorm.meta.php/
+*.iml
+.idea/
+.DS_Store
