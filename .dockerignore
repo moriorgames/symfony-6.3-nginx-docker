@@ -1,0 +1,7 @@
+# Ignorar directorios específicos
+docker/nginx/*
+!docker/nginx/symfony.conf
+
+# Ignorar archivos específicos
+docker-compose.yml
+.gitignore

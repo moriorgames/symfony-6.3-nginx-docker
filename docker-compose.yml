@@ -1,16 +1,27 @@
 version: '3'
 
 services:
-  app:
-    image: moriorgames/sf6.3-api
+  nginx:
+    image: moriorgames/sf6.3-nginx
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: app
+      dockerfile: Dockerfile-nginx
+    container_name: nginx
     ports:
-      - 8080:80
+      - '8080:80'
     volumes:
-      - .:/var/www/html
+      - .:/app
+    depends_on:
+      - app
+
+  app:
+    image: moriorgames/sf6.3-app
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+    container_name: app
+    volumes:
+      - .:/app
     depends_on:
       - db
 

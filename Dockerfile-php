@@ -1,0 +1,18 @@
+FROM php:8.1-fpm
+
+RUN mkdir -p /app
+WORKDIR /app
+
+# Instalar dependencias adicionales según sea necesario
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends
+
+# Copiar los archivos de tu aplicación Symfony al contenedor
+COPY . /app
+RUN php phars/composer.phar install
+
+# Exponer el puerto 9000 para que Nginx pueda comunicarse con PHP-FPM
+EXPOSE 9000
+
+# Comando para iniciar PHP-FPM
+CMD ["php-fpm"]
