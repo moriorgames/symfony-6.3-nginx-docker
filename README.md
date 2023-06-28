@@ -11,7 +11,9 @@ Follow the steps below to set up the project locally:
 
 1. Clone the repository: `git clone <repository-url>`
 
-2. Build and run the Docker containers: `docker-compose up -d`
+2. Build and run the Docker containers:
+   - `docker-compose build`
+   - `docker-compose up -d`
    - This command will build the necessary Docker images and start the containers for PHP, Nginx, and MariaDB.
 
 3. Access the application:
