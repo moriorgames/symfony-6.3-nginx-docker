@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\BoundedContext\Application\UseCase;
 
 use App\BoundedContext\Domain\Entity\Entity;
+use App\BoundedContext\Domain\Enum\EntityType;
 use App\BoundedContext\Domain\Repository\EntityRepository;
-use Tests\BoundedContext\Domain\Enum\Type;
 
 class CreateEntity
 {
@@ -16,7 +16,7 @@ class CreateEntity
 
     public function __invoke(CreateEntityRequest $request): CreateEntityResponse
     {
-        $entity = new Entity(Type::from($request->type));
+        $entity = new Entity(EntityType::from($request->type));
         $this->repository->save($entity);
 
         return new CreateEntityResponse($entity->type->value);

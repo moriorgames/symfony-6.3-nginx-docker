@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\BoundedContext\Domain\Entity;
 
-use Tests\BoundedContext\Domain\Enum\Type;
+use App\BoundedContext\Domain\Enum\EntityType;
 
 class Entity
 {
-    public function __construct(public readonly Type $type)
+    public function __construct(public readonly EntityType $type)
     {
     }
 }

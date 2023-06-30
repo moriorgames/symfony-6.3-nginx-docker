@@ -7,11 +7,11 @@ namespace Tests\Unit\BoundedContext\Application\UseCase;
 use App\BoundedContext\Application\UseCase\CreateEntity;
 use App\BoundedContext\Application\UseCase\CreateEntityRequest;
 use App\BoundedContext\Domain\Entity\Entity;
+use App\BoundedContext\Domain\Enum\EntityType;
 use App\BoundedContext\Domain\Repository\EntityRepository;
 use Prophecy\Argument;
 use Prophecy\Prophecy\MethodProphecy;
 use Prophecy\Prophecy\ObjectProphecy;
-use Tests\BoundedContext\Domain\Enum\Type;
 use Tests\Unit\UnitBaseTestCase;
 use ValueError;
 
@@ -42,10 +42,10 @@ class CreateEntityTest extends UnitBaseTestCase
         /** @var MethodProphecy $repositoryExpectation */
         $repositoryExpectation = $this->repository->save(Argument::type(Entity::class));
 
-        $request = new CreateEntityRequest(Type::ONE->value);
+        $request = new CreateEntityRequest(EntityType::ONE->value);
         $result = $this->sut->__invoke($request);
 
-        $this->assertEquals(Type::ONE->value, $result->type);
+        $this->assertEquals(EntityType::ONE->value, $result->type);
         $repositoryExpectation->shouldBeCalledOnce();
     }
 
@@ -54,10 +54,10 @@ class CreateEntityTest extends UnitBaseTestCase
         /** @var MethodProphecy $repositoryExpectation */
         $repositoryExpectation = $this->repository->save(Argument::type(Entity::class));
 
-        $request = new CreateEntityRequest(Type::TWO->value);
+        $request = new CreateEntityRequest(EntityType::TWO->value);
         $result = $this->sut->__invoke($request);
 
-        $this->assertEquals(Type::TWO->value, $result->type);
+        $this->assertEquals(EntityType::TWO->value, $result->type);
         $repositoryExpectation->shouldBeCalledOnce();
     }
 }
