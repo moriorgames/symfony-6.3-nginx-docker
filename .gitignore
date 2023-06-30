@@ -10,6 +10,7 @@
 # PHPUnit
 /phpunit.xml
 /coverage/
+.phpunit.cache
 
 # PHPStorm
 .idea/
