@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app-test:
+    image: moriorgames/sf6.3-app
+    build:
+      context: .
+      dockerfile: docker/dockerfiles/Dockerfile-php-xdebug
+    container_name: app_test
+    volumes:
+      - .:/app
+    depends_on:
+      - db-test
+
+  db-test:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: dev
+    container_name: db_test

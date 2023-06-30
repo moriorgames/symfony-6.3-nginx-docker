@@ -5,7 +5,7 @@ services:
     image: moriorgames/sf6.3-nginx
     build:
       context: .
-      dockerfile: Dockerfile-nginx
+      dockerfile: docker/dockerfiles/Dockerfile-nginx
     container_name: nginx
     ports:
       - '8080:80'
@@ -18,7 +18,7 @@ services:
     image: moriorgames/sf6.3-app
     build:
       context: .
-      dockerfile: Dockerfile-php
+      dockerfile: docker/dockerfiles/Dockerfile-php
     container_name: app
     volumes:
       - .:/app

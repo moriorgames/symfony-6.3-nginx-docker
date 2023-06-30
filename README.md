@@ -20,6 +20,12 @@ Follow the steps below to set up the project locally:
    - Open your browser and go to `http://localhost:8080`.
    - You should see the application running.
 
+## Executing tests
+
+```
+$ make test  
+```
+
 ## Project Structure
 
 Provide a brief description of the project structure and important files/directories here.
