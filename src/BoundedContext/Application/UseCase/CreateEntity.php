@@ -6,6 +6,7 @@ namespace App\BoundedContext\Application\UseCase;
 
 use App\BoundedContext\Domain\Entity\Entity;
 use App\BoundedContext\Domain\Repository\EntityRepository;
+use Tests\BoundedContext\Domain\Enum\Type;
 
 class CreateEntity
 {
@@ -13,11 +14,11 @@ class CreateEntity
     {
     }
 
-    public function __invoke(): bool
+    public function __invoke(CreateEntityRequest $request): CreateEntityResponse
     {
-        $entity = new Entity();
+        $entity = new Entity(Type::from($request->type));
         $this->repository->save($entity);
 
-        return true;
+        return new CreateEntityResponse($entity->type->value);
     }
 }

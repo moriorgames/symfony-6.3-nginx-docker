@@ -5,23 +5,59 @@ declare(strict_types=1);
 namespace Tests\Unit\BoundedContext\Application\UseCase;
 
 use App\BoundedContext\Application\UseCase\CreateEntity;
+use App\BoundedContext\Application\UseCase\CreateEntityRequest;
 use App\BoundedContext\Domain\Entity\Entity;
 use App\BoundedContext\Domain\Repository\EntityRepository;
-use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\Prophecy\MethodProphecy;
+use Prophecy\Prophecy\ObjectProphecy;
+use Tests\BoundedContext\Domain\Enum\Type;
+use Tests\Unit\UnitBaseTestCase;
+use ValueError;
 
-class CreateEntityTest extends TestCase
+class CreateEntityTest extends UnitBaseTestCase
 {
-    public function testIsAbleToCreateEntity()
+    private CreateEntity $sut;
+    private ObjectProphecy|EntityRepository $repository;
+
+    protected function setUp(): void
     {
-        $repository = $this->createMock(EntityRepository::class);
-        $sut = new CreateEntity($repository);
+        parent::setUp();
 
-        $repository->expects($this->once())
-            ->method('save')
-            ->with(new Entity());
+        /** @var ObjectProphecy|EntityRepository $repository */
+        $this->repository = $this->prophet->prophesize(EntityRepository::class);
+        $this->sut = new CreateEntity($this->repository->reveal());
+    }
 
-        $result = $sut();
+    public function testThrowsExceptionWhenNoValidType()
+    {
+        $this->expectException(ValueError::class);
 
-        $this->assertTrue($result);
+        $request = new CreateEntityRequest('Fake Value');
+        $this->sut->__invoke($request);
+    }
+
+    public function testIsAbleToCreateEntityFromTypeOne()
+    {
+        /** @var MethodProphecy $repositoryExpectation */
+        $repositoryExpectation = $this->repository->save(Argument::type(Entity::class));
+
+        $request = new CreateEntityRequest(Type::ONE->value);
+        $result = $this->sut->__invoke($request);
+
+        $this->assertEquals(Type::ONE->value, $result->type);
+        $repositoryExpectation->shouldBeCalledOnce();
+    }
+
+    public function testIsAbleToCreateEntityFromTypeTwo()
+    {
+        /** @var MethodProphecy $repositoryExpectation */
+        $repositoryExpectation = $this->repository->save(Argument::type(Entity::class));
+
+        $request = new CreateEntityRequest(Type::TWO->value);
+        $result = $this->sut->__invoke($request);
+
+        $this->assertEquals(Type::TWO->value, $result->type);
+        $repositoryExpectation->shouldBeCalledOnce();
     }
 }

@@ -15,6 +15,7 @@
         "symfony/yaml": "6.3.*"
     },
     "require-dev": {
+        "phpspec/prophecy-phpunit": "^2.0"
     },
     "config": {
         "allow-plugins": {
