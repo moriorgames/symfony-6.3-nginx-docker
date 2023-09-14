@@ -18,7 +18,8 @@ use ValueError;
 class CreateEntityTest extends UnitBaseTestCase
 {
     private CreateEntity $sut;
-    private ObjectProphecy|EntityRepository $repository;
+    private ObjectProphecy $repository;
+    private MethodProphecy $repositoryExpectation;
 
     protected function setUp(): void
     {
@@ -39,25 +40,23 @@ class CreateEntityTest extends UnitBaseTestCase
 
     public function testIsAbleToCreateEntityFromTypeOne()
     {
-        /** @var MethodProphecy $repositoryExpectation */
-        $repositoryExpectation = $this->repository->save(Argument::type(Entity::class));
+        $this->repositoryExpectation = $this->repository->save(Argument::type(Entity::class));
 
         $request = new CreateEntityRequest(EntityType::ONE->value);
         $result = $this->sut->__invoke($request);
 
         $this->assertEquals(EntityType::ONE->value, $result->type);
-        $repositoryExpectation->shouldBeCalledOnce();
+        $this->repositoryExpectation->shouldBeCalledOnce();
     }
 
     public function testIsAbleToCreateEntityFromTypeTwo()
     {
-        /** @var MethodProphecy $repositoryExpectation */
-        $repositoryExpectation = $this->repository->save(Argument::type(Entity::class));
+        $this->repositoryExpectation = $this->repository->save(Argument::type(Entity::class));
 
         $request = new CreateEntityRequest(EntityType::TWO->value);
         $result = $this->sut->__invoke($request);
 
         $this->assertEquals(EntityType::TWO->value, $result->type);
-        $repositoryExpectation->shouldBeCalledOnce();
+        $this->repositoryExpectation->shouldBeCalledOnce();
     }
 }
