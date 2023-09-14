@@ -33,3 +33,11 @@ Provide a brief description of the project structure and important files/directo
 ## API Documentation
 
 Explain the purpose of the API documentation and mention the vendors or tools used for generating it.
+
+## Tooling
+
+This utility command can be used to print file contents for exploration:
+
+```
+$ find . -type f -exec printf '### START OF FILE ###\n%s\n' {} \; -exec cat {} \; -exec printf '### END OF FILE ###\n' \;
+```
