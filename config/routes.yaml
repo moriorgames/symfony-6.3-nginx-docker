@@ -1,5 +1,5 @@
 controllers:
     resource:
         path: ../src/BoundedContext/Infrastructure/Controller/
-        namespace: App\Controller
+        namespace: App\BoundedContext\Infrastructure\Controller
     type: attribute
