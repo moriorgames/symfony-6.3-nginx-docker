@@ -41,3 +41,14 @@ This utility command can be used to print file contents for exploration:
 ```
 $ find . -type f -exec printf '### START OF FILE ###\n%s\n' {} \; -exec cat {} \; -exec printf '### END OF FILE ###\n' \;
 ```
+
+## Testing environment
+
+```
+$ docker-compose -f docker-compose-test.yml build
+$ docker-compose -f docker-compose-test.yml down
+$ docker-compose -f docker-compose-test.yml up -d
+$ docker-compose -f docker-compose-test.yml exec app-test bash  
+app# php bin/console --env=test doctrine:schema:create
+app# ./bin/phpunit tests/Integration
+```

@@ -18,7 +18,7 @@ class CreateEntityController extends AbstractController
         $type = 'one';
         $request = new CreateEntityRequest($type);
         $result = $createEntity->__invoke($request);
-        
+
         return new Response("El resultado es: " . $result->type);
     }
 }

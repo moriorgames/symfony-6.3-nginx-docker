@@ -28,5 +28,13 @@ services:
   db:
     image: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_DATABASE: dev
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: dev_user
+      MYSQL_PASSWORD: dev_pass
+      MYSQL_TCP_PORT: 3306
     container_name: db
+    ports:
+    - 3306:3306
+    expose:
+      - 3306

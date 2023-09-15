@@ -6,7 +6,6 @@ namespace Tests\Unit\BoundedContext\Application\UseCase;
 
 use App\BoundedContext\Application\UseCase\CreateEntity;
 use App\BoundedContext\Application\UseCase\CreateEntityRequest;
-use App\BoundedContext\Domain\Entity\Entity;
 use App\BoundedContext\Domain\Enum\EntityType;
 use App\BoundedContext\Domain\Repository\EntityRepository;
 use Prophecy\Argument;
