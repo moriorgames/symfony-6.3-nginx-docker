@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Integration\BoundedContext\Application\UseCase;
+namespace Integration\BoundedContext\Infrastructure\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

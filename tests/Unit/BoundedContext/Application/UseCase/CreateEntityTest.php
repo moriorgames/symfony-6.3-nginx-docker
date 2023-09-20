@@ -6,6 +6,7 @@ namespace Tests\Unit\BoundedContext\Application\UseCase;
 
 use App\BoundedContext\Application\UseCase\CreateEntity;
 use App\BoundedContext\Application\UseCase\CreateEntityRequest;
+use App\BoundedContext\Domain\Entity\SomeEntity;
 use App\BoundedContext\Domain\Enum\EntityType;
 use App\BoundedContext\Domain\Repository\EntityRepository;
 use Prophecy\Argument;
@@ -39,7 +40,7 @@ class CreateEntityTest extends UnitBaseTestCase
 
     public function testIsAbleToCreateEntityFromTypeOne()
     {
-        $this->repositoryExpectation = $this->repository->save(Argument::type(Entity::class));
+        $this->repositoryExpectation = $this->repository->save(Argument::type(SomeEntity::class));
 
         $request = new CreateEntityRequest(EntityType::ONE->value);
         $result = $this->sut->__invoke($request);
@@ -50,7 +51,7 @@ class CreateEntityTest extends UnitBaseTestCase
 
     public function testIsAbleToCreateEntityFromTypeTwo()
     {
-        $this->repositoryExpectation = $this->repository->save(Argument::type(Entity::class));
+        $this->repositoryExpectation = $this->repository->save(Argument::type(SomeEntity::class));
 
         $request = new CreateEntityRequest(EntityType::TWO->value);
         $result = $this->sut->__invoke($request);

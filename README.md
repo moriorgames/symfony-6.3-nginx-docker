@@ -46,9 +46,14 @@ $ find . -type f -exec printf '### START OF FILE ###\n%s\n' {} \; -exec cat {} \
 
 ```
 $ docker-compose -f docker-compose-test.yml build
-$ docker-compose -f docker-compose-test.yml down
 $ docker-compose -f docker-compose-test.yml up -d
 $ docker-compose -f docker-compose-test.yml exec app-test bash  
 app# php bin/console --env=test doctrine:schema:create
 app# ./bin/phpunit tests/Integration
+```
+
+Remove test environment
+
+```
+$ docker-compose -f docker-compose-test.yml down 
 ```
